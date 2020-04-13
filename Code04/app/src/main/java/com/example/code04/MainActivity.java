@@ -25,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
                 String message = etMessage.getText().toString();
                 Toast.makeText(MainActivity.this,message,Toast.LENGTH_SHORT).show();
 
-                Intent intent=new Intent(MainActivity.this,MessageActivity.class;
+                Intent intent=new Intent(MainActivity.this,MessageActivity.class);
                 intent.putExtra("sendMessage",message);
                 startActivity(intent);
             }
