@@ -1,11 +1,14 @@
 package com.example.code07;
 
 import androidx.appcompat.app.AppCompatActivity;
+import androidx.recyclerview.widget.LinearLayoutManager;
+import androidx.recyclerview.widget.RecyclerView;
 
 import android.content.Context;
 import android.content.res.TypedArray;
 import android.os.Bundle;
 import android.widget.ArrayAdapter;
+import android.widget.LinearLayout;
 import android.widget.ListView;
 import android.widget.SimpleAdapter;
 
@@ -15,14 +18,13 @@ import java.util.List;
 import java.util.Map;
 
 public class MainActivity extends AppCompatActivity {
-    public static final String NEWS_ID ="new_id";
     private List<News> newsList = new ArrayList<>();
-    public static final String NEWS_TITLE = "news_title";
-    public static final String NEWS_AUTHOR = "news_author";
-
     private List<Map<String,String>> datalist= new ArrayList<>();
     private String[] titles = null;
     private String[] authors = null;
+
+    private NewsAdapter newsAdapter = null;
+    private RecyclerView recyclerView;
 
     private void initData() {
 
@@ -56,12 +58,15 @@ public class MainActivity extends AppCompatActivity {
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         setContentView(R.layout.activity_main);
-
+        recyclerView = findViewById(R.id.lv_news_list);
         initData();
 
-        NewsAdapter newsAdapter=new NewsAdapter(MainActivity.this,R.layout.list_item, newsList);
-        ListView listView = findViewById(R.id.lv_news_list);
-        listView.setAdapter(newsAdapter);
+        NewsAdapter newsAdapter=new NewsAdapter(MainActivity.this,
+                R.layout.list_item,
+                newsList);
+        LinearLayoutManager llm =new LinearLayoutManager(this);
+        recyclerView.setLayoutManager(llm);
+        recyclerView.setAdapter(newsAdapter);
 //        SimpleAdapter simpleAdapter = new SimpleAdapter(MainActivity.this, datalist, android.R.layout.simple_list_item_2,
 //                new String[]{NEWS_TITLE, NEWS_AUTHOR}, new int[]{android.R.id.text1, android.R.id.text2});
 //
