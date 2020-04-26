@@ -1,8 +1,7 @@
-package com.example.code05;
-
-import androidx.appcompat.app.AppCompatActivity;
+package com.example.code07;
 
 import android.content.Context;
+import android.content.Intent;
 import android.content.SharedPreferences;
 import android.graphics.Typeface;
 import android.os.Bundle;
@@ -15,9 +14,9 @@ import android.widget.EditText;
 import android.widget.ImageView;
 import android.widget.Toast;
 
-import java.lang.reflect.Type;
+import androidx.appcompat.app.AppCompatActivity;
 
-public class MainActivity extends AppCompatActivity {
+public class LoginActivity extends AppCompatActivity {
     private boolean pwdSwitch = false;
     private EditText etpwd;
     private EditText etAccount;
@@ -26,7 +25,7 @@ public class MainActivity extends AppCompatActivity {
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
+        setContentView(R.layout.activity_login);
 
         Button loginButton = findViewById(R.id.btnLogin);
         final ImageView imageView = findViewById(R.id.iv_pwd_switch);
@@ -58,7 +57,7 @@ public class MainActivity extends AppCompatActivity {
         loginButton.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                Toast.makeText(MainActivity.this, "welcome", Toast.LENGTH_SHORT).show();
+                Intent intent = new Intent(LoginActivity.this,MainActivity.class);
                 String spFileName = getResources()
                         .getString(R.string.shared_preferenced_file_name);
                 String accountKey = getResources()
@@ -88,7 +87,7 @@ public class MainActivity extends AppCompatActivity {
                     spEdit.apply();
                     spEdit.commit();
                 }
-
+            startActivity(intent);
             }
         });
 
