@@ -14,7 +14,7 @@
     <TextView
         android:id="@+id/numberText"
         android:text="0"
-        android:textSize="160sp"
+        android:textSize="100sp"
         android:textColor="@color/colorAccent"
         android:layout_weight="1"
         android:layout_height="0dp"

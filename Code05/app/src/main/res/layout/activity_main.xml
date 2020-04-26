@@ -28,6 +28,7 @@
             android:src="@drawable/ic_person_outline_black_24dp"/>
 
         <EditText
+            android:id="@+id/et_account"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
             android:layout_marginBottom="4dp"
@@ -76,6 +77,38 @@
 
     <RelativeLayout
         android:layout_width="match_parent"
+        android:layout_height="40dp"
+        android:layout_marginTop="16dp">
+
+        <CheckBox
+            android:id="@+id/cb_remember_pwd"
+            android:text="Remember password"
+            android:textColor="@color/colorPrimary"
+            android:layout_marginLeft="8dp"
+            android:layout_marginBottom="4dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentLeft="true"
+            android:layout_alignParentBottom="true"
+            />
+        
+        <TextView
+            android:id="@+id/tv_sign_up"
+            android:text="sign up"
+            android:textColor="@color/colorAccent"
+            android:layout_alignBaseline="@id/cb_remember_pwd"
+            android:layout_alignParentBottom="true"
+            android:layout_alignParentEnd="true"
+            android:layout_alignParentRight="true"
+            android:layout_marginEnd="20dp"
+            android:layout_marginRight="20dp"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content" />
+    </RelativeLayout>
+    
+    <RelativeLayout
+        android:layout_width="match_parent"
         android:layout_height="wrap_content"
         android:layout_weight="1"
         android:layout_marginBottom="32dp">
@@ -88,5 +121,9 @@
             android:layout_alignParentTop="true"
             android:layout_width="match_parent"
             android:layout_height="wrap_content" />
+
+
     </RelativeLayout>
+
+
 </LinearLayout>
