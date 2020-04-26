@@ -44,6 +44,7 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         if(news.getmImageId()!= -1){
             holder.ivImage.setImageResource(news.getmImageId());
+            holder.ivImage.setImageBitmap(news.getBitmap());
         }
     }
 
@@ -52,36 +53,6 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
         return mNewsData.size();
     }
 
-//    @Override
-//    public View getView(int position, View convertView, ViewGroup parent) {
-//        News news = (News) getItem(position);
-//        View view;
-//
-//        ViewHolder viewHolder;
-//
-//        if (convertView == null) {
-//            view = LayoutInflater.from(getContext()).inflate(resourceId, parent, false);
-//
-//            viewHolder = new ViewHolder();
-//
-//            viewHolder.tvTitle = view.findViewById(R.id.tv_title);
-//            viewHolder.tvAuthor = view.findViewById(R.id.tv_subtitle);
-//            viewHolder.ivImage = view.findViewById(R.id.iv_image);
-//
-//            view.setTag(viewHolder);
-//        } else {
-//            view = convertView;
-//            viewHolder = (ViewHolder) view.getTag();
-//        }
-//
-//        viewHolder.tvTitle.setText(news.getmTitle());
-//        viewHolder.tvAuthor.setText(news.getmAuthor());
-//        viewHolder.ivImage.setImageResource(news.getmImageId());
-//        return view;
-//
-//
-//    }
-
     class ViewHolder extends RecyclerView.ViewHolder {
         TextView tvTitle;
         TextView tvAuthor;
@@ -89,10 +60,10 @@ public class NewsAdapter extends RecyclerView.Adapter<NewsAdapter.ViewHolder> {
 
         public ViewHolder(View view){
             super(view);
-
             tvTitle =  view.findViewById(R.id.tv_title);
             tvAuthor = view.findViewById(R.id.tv_subtitle);
             ivImage = view.findViewById(R.id.iv_image);
+
         }
     }
 }

@@ -1,10 +1,22 @@
 package com.example.code07;
 
+import android.graphics.Bitmap;
+
 public class News {
     private String mTitle;
     private String mAuthor;
     private String mContent;
     private int mImageId;
+
+    public Bitmap getBitmap() {
+        return bitmap;
+    }
+
+    public void setBitmap(Bitmap bitmap) {
+        this.bitmap = bitmap;
+    }
+
+    private Bitmap bitmap;
 
 
     public String getmTitle() {
