@@ -1,0 +1,8 @@
+<resources>
+    <string name="app_name">Code05</string>
+    <!-- related to login-->
+    <string name="shared_preferenced_file_name">sp_login</string>
+    <string name="login_acount_name">login_account_name</string>
+    <string name="login_passwd">login_passwd</string>
+    <string name="login_remember_passwd">login_remember_passwd</string>
+</resources>
