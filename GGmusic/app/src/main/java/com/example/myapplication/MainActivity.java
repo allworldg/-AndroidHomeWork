@@ -36,12 +36,13 @@ import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
 
 import com.bumptech.glide.Glide;
+import com.example.myapplication.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
-
+    ActivityMainBinding binding;
     private ContentResolver mContentResolver;
-    private ListView mPlaylist;
+
     private MediaCursorAdapter mCursorAdapter;
 
     private final int REQUEST_EXTERNAL_STORAGE = 1;
@@ -131,7 +132,6 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 Uri dataUri = Uri.parse(data);
 
                 musicIndex = i;
-
                 Intent serviceIntent = new Intent(MainActivity.this, MusicService.class);
                 serviceIntent.putExtra(MainActivity.DATA_URI, data);
                 serviceIntent.putExtra(MainActivity.TITLE, title);
@@ -179,13 +179,12 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
     @Override
     protected void onCreate(Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
-        setContentView(R.layout.activity_main);
-
-        mPlaylist = findViewById(R.id.lv_playlist);
+        binding = ActivityMainBinding.inflate(getLayoutInflater());
+        setContentView(binding.getRoot());
 
         mContentResolver = getContentResolver();
         mCursorAdapter = new MediaCursorAdapter(MainActivity.this);
-        mPlaylist.setAdapter(mCursorAdapter);
+        binding.lvPlaylist.setAdapter(mCursorAdapter);
 
         navigation = findViewById(R.id.navigation);
         LayoutInflater.from(MainActivity.this).inflate(R.layout.bottom_media_toolbar, navigation, true);
@@ -202,7 +201,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
 
         navigation.setVisibility(View.GONE);
 
-        mPlaylist.setOnItemClickListener(itemClickListener);
+        binding.lvPlaylist.setOnItemClickListener(itemClickListener);
 
         if (mMediaPlayer == null) {
             mMediaPlayer = new MediaPlayer();
