@@ -84,9 +84,8 @@ public class MainActivity extends AppCompatActivity {
                 new AdapterView.OnItemClickListener() {
                     @Override
                     public void onItemClick(AdapterView<?> parent, View view, int position, long id) {
-//                        Intent intent = new Intent(MainActivity.this,
-//                                DetailAcitivity.class);
-                        Intent intent = new Intent();
+                        Intent intent = new Intent(MainActivity.this,
+                                DetailActivity.class);
                         News news = adapter.getItem(position);
                         intent.putExtra(Constants.NEWS_DETAIL_URL_KEY,news.getUrl());
                         startActivity(intent);
