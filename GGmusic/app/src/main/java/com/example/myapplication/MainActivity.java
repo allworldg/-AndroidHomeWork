@@ -148,7 +148,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                 if (tvBottomArtist != null) {
                     tvBottomArtist.setText(artist);
                 }
-
+                ivPlay.setImageResource(R.drawable.ic_pause_circle_outline_black_24dp);
                 Uri albumUri = ContentUris.withAppendedId(
                         MediaStore.Audio.Albums.EXTERNAL_CONTENT_URI,
                         albumId);
