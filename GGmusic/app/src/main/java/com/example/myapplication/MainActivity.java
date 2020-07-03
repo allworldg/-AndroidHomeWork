@@ -11,6 +11,7 @@ import android.content.IntentFilter;
 import android.content.ServiceConnection;
 import android.content.pm.PackageManager;
 import android.database.Cursor;
+import android.graphics.Bitmap;
 import android.media.MediaPlayer;
 import android.net.Uri;
 import android.os.Build;
@@ -21,6 +22,7 @@ import android.os.Looper;
 import android.os.Message;
 import android.provider.MediaStore;
 import android.util.Log;
+import android.util.Size;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.AdapterView;
@@ -39,6 +41,8 @@ import androidx.core.content.ContextCompat;
 import com.bumptech.glide.Glide;
 import com.example.myapplication.databinding.ActivityMainBinding;
 import com.google.android.material.bottomnavigation.BottomNavigationView;
+
+import java.io.IOException;
 
 public class MainActivity extends AppCompatActivity implements View.OnClickListener{
     ActivityMainBinding binding;
@@ -167,8 +171,19 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                     String albumArt = cursor.getString(albumArtIndex);
 
                     Log.d(TAG, "albumArt: " + albumArt);
+                    if (Build.VERSION.SDK_INT > Build.VERSION_CODES.P) {
+                        try {
+                            int width = (int) MainActivity.this.getResources().getDisplayMetrics().density * 40;
+                            int height = (int) MainActivity.this.getResources().getDisplayMetrics().density * 40;
 
-                    Glide.with(MainActivity.this).load(albumArt).into(ivAlbumThumbnail);
+                            Bitmap albumBitmap = mContentResolver.loadThumbnail(albumUri, new Size(width, height), null);
+                            Glide.with(MainActivity.this).load(albumBitmap).into(ivAlbumThumbnail);
+                        } catch (IOException ex) {
+                            ex.printStackTrace();
+                        }
+                    }
+
+
                     cursor.close();
                 }
             }
@@ -322,7 +337,7 @@ public class MainActivity extends AppCompatActivity implements View.OnClickListe
                         message.arg1 = position;
                         mHandler.sendMessage(message);
 
-                        Log.d(TAG, "CurrentPosition: " + position);
+//                        Log.d(TAG, "CurrentPosition: " + position);
                     }
 
                     mThreadWorking = mService.isPlaying();
